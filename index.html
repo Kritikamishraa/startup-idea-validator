@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Idea Validator | Test Your Business Concept</title>
+    <style>
+        
+
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c0;
+            --secondary: #00cec9;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex: 1;
+        }
+        /* NAVBAR */
+.navbar {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+.nav-logo span { color: var(--secondary); }
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    transition: max-height 0.3s ease;
+}
+.nav-links li a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.nav-links li a:hover { color: var(--primary); }
+
+/* Hamburger menu (hidden by default) */
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+/* Hamburger bars */
+.hamburger {
+    display: none;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.hamburger span {
+    background: var(--dark);
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    border-radius: 2px;
+    left: 0;
+    transition: all 0.4s ease;
+}
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 8px; }
+.hamburger span:nth-child(3) { top: 16px; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg); top: 8px; }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg); top: 8px; }
+
+/* Mobile slide-in menu */
+@media (max-width: 768px) {
+    .hamburger { display: block; z-index: 1100; }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100%;
+        background: #fff;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 5rem 2rem;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+        transition: right 0.4s ease;
+    }
+    .nav-links.open {
+        right: 0;
+    }
+    .nav-links li a {
+        font-size: 1.2rem;
+    }
+}
+
+/* Mobile styles */
+@media(max-width: 768px) {
+    .hamburger { display: block; }
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        max-height: 0;
+        overflow: hidden;
+    }
+    .nav-links.open { max-height: 300px; }
+}
+
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--dark);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+            opacity: 0.9;
+        }
+
+        .validator-form {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+ 
+    .footer {
+      background: #002e5f;
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.6;
+      padding-top: 40px;
+    }
+
+    .footer .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer h4 {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .footer h4::after {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background: #00bfff;
+      left: 0;
+      bottom: -6px;
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer ul li {
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+    .footer ul li a:hover {
+      color: #00bfff;
+    }
+
+    .footer-contact p,
+    .footer-contact a {
+      color: #fff;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .footer-contact a:hover {
+      color: #00bfff;
+    }
+
+    .footer-social a {
+      display: inline-block;
+      margin-right: 8px;
+      width: 36px;
+      height: 36px;
+      background: #fff;
+      color: #00bfff;
+      line-height: 36px;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    .footer-social a:hover {
+      background: #00bfff;
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .footer-newsletter input[type="email"] {
+      width: 70%;
+      padding: 6px 8px;
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .footer-newsletter input[type="submit"] {
+      width: 70%;
+      padding: 6px 0;
+      border: none;
+      background: #fff;
+      color: #002e5f;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all .3s ease;
+    }
+    .footer-newsletter input[type="submit"]:hover {
+      background: #00bfff;
+      color: #fff;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 15px 0;
+      background: #001d3a;
+      margin-top: 30px;
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .footer .row {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-newsletter input[type="email"],
+      .footer-newsletter input[type="submit"] {
+        width: 90%;
+      }
+    }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .validator-form {
+                padding: 1.5rem;
+            }
+        }
+        /* Trusted by Section */
+.trusted {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+.trusted h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--dark);
+}
+.logo-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.logo-bar img {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    max-height: 40px;
+}
+.logo-bar img:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+
+
+
+/* Testimonials Section */
+.testimonials {
+    padding: 4rem 1rem;
+    background: #fff;
+    text-align: center;
+}
+.testimonials h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: var(--dark);
+}
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.testimonial-card {
+    background: var(--light);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+.testimonial-card h4 {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* Responsive Adjustments */
+@media(max-width: 768px) {
+    .trusted h2,
+    .testimonials h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Avatar styling */
+.testimonial-card .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+}
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+.logo span { color: var(--secondary); }
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--dark);
+  transition: color 0.3s ease;
+}
+.navbar ul li a:hover { color: var(--primary); }
+
+/* Menu icon for mobile */
+.menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--dark);
+}
+
+.home {
+    min-height: 100vh;
+    width: 100vw;
+    background: url('./images/huy-phan-glw2Yfc_dIU-unsplash.jpg') no-repeat center center;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+    overflow: hidden !important;
+}
+
+
+.home h1{
+    color: #fff;
+    font-size: 5.5rem;
+}
+
+.home h2{
+    color: #fff;
+    font-size: 3rem;
+}
+
+.home .wave{
+    position: absolute;
+    bottom: -.5rem;
+    left: 0;
+    height: 11rem;
+    width: 100%;
+    background: url(../images/wave.png);
+    background-size: 100rem 11rem;
+    animation: waves 8s linear infinite;
+    background-repeat: repeat-x;
+}
+
+.home .wave2{
+    animation-direction: reverse;
+    animation-duration: 6s;
+    opacity: .3;
+}
+
+.home .wave3{
+    animation-duration: 4s;
+    opacity: .5;
+}
+
+
+@keyframes moveWave {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-5%); }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    position: absolute;
+    top: 70px;
+    right: -100%;
+    width: 250px;
+    background: #fff;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    padding: 2rem 1rem;
+  }
+  .navbar.show { right: 0; }
+  .navbar ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .menu-icon { display: block; }
+}
+
+
+        .faq{
+            min-height: 70vh;
+            width: 100vw;
+            text-align: center;
+            padding: 0 2rem;
+            background: url(../images/faq.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .faq .row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 2rem;
+        }
+        
+        .faq .row .accordion-container{
+            width: 50%;
+            text-align: left;
+        }
+
+        .faq .row .accordion{
+            margin-left: 1rem;
+            margin-right: 2rem;
+        }
+       .faq .row .accordion-container .accordion .accordion-header {
+    background-color: #f5e0c3; /* Nude color */ 
+    margin: 1rem 0;
+    box-shadow: .1rem .1rem .3rem rgba(0,0,0,.3);
+    cursor: pointer;
+    margin-left: 1rem;
+    margin-right: 2rem;
+}
+
+
+        .faq .row .accordion-container .accordion .accordion-header span{
+            display: inline-block;
+            text-align: center;
+            height: 4rem;
+            width: 5rem;
+            line-height: 4rem;
+            font-size: 2rem;
+            background: #333;
+            color: #fff;
+            clip-path: polygon(0% 0%,75% 0%,100% 50%,75% 100%,0% 100%); 
+        }
+        
+        .faq .row .accordion-container .accordion .accordion-header h3{
+            display: inline;
+            color: #333;
+            font-weight: 400;
+            padding-left: .5rem;
+            font-size: 1.5rem;
+        }
+        
+        .faq .row .accordion-container .accordion .accordion-body{
+            padding: 1rem;
+            color: #444;
+            box-shadow: .1rem .1rem .3rem rgba(0,0,0,.3);
+            background-color: #fff;
+            font-size: 1.3rem;
+            display: none;
+            margin-left: 1rem;
+            margin-right: 2rem;
+        }
+        
+@media (max-width: 1200px){
+    .faq{
+        min-height: 70vh;
+    }
+}     
+.accordion-container {
+  max-width: 900px;
+  margin: auto;
+}
+.accordion {
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 0;
+}
+.accordion-header h3 {
+  flex: 1;
+  text-align: left;   /* Aligns question text to the right */
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.accordion-header span {
+  margin-right: 1rem;  /* Keeps the + / - icon on the left */
+}
+
+.accordion-body {
+  display: none;
+  padding-top: 1rem;
+  color: #333;
+}
+.accordion.active .accordion-body {
+  display: block;
+}
+
+
+/* Ensure menu is above overlay */
+.nav-links {
+    z-index: 110;
+}
+
+        /* Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating { animation: float 3s ease-in-out infinite; }
+    </style>
+</head>
+<body>
+ <header class="header">
+  <a href="#" class="logo">Startup<span>Validator</span></a>
+  
+  <div class="menu-icon" id="menu-icon">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#service">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="careers.html">Career</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+ <section id="home" class="home">
+     <h1>Make Smarter Startup Decisions</h1>
+<h2>Validate Before You Build</h2>
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+  </section>
+</section>
+
+
+<!-- Overlay for mobile menu -->
+<div class="overlay" id="overlay"></div>
+
+
+    <div class="container">
+        <header>
+            <div class="logo">Startup<span>Validator</span></div>
+            <div class="tagline">Smart validation for your next big idea</div>
+        </header>
+
+        <section class="hero">
+            <h1>Validate Your Startup Idea</h1>
+            <p>Get instant feedback on your business concept with our AI-powered validation tool. Discover your idea's potential before you invest time and money.</p>
+            
+            <div class="validator-form floating">
+                <div class="form-group">
+                    <label for="idea">Describe your startup idea:</label>
+                    <textarea id="idea" class="form-control" placeholder="Example: A mobile app that helps people find local fitness partners based on their workout preferences and schedules..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="industry">Primary Industry:</label>
+                    <select id="industry" class="form-control">
+                        <option value="">Select industry...</option>
+                        <option value="tech">Technology</option>
+                        <option value="health">Healthcare</option>
+                        <option value="finance">Finance</option>
+                        <option value="education">Education</option>
+                        <option value="retail">Retail/E-commerce</option>
+                        <option value="food">Food & Beverage</option>
+                        <option value="travel">Travel & Hospitality</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-block">Validate My Idea</button>
+            </div>
+        </section>
+
+        <section class="features">
+            
+
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Viability Score</h3>
+                <p>Receive an instant assessment score evaluating the potential success of your idea based on market trends.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3 class="feature-title">Smart Feedback</h3>
+                <p>Get actionable suggestions to improve your concept and address potential weaknesses.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Target Audience</h3>
+                <p>Identify your most promising customer segments with demographic and behavioral insights.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3 class="feature-title">Tech Stack</h3>
+                <p>Personalized recommendations for the best technologies to build your product.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3 class="feature-title">Domain Ideas</h3>
+                <p>Creative domain name suggestions that are memorable and relevant to your concept.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">Growth Tips</h3>
+                <p>Proven strategies to acquire your first customers and scale efficiently.</p>
+            </div>
+        </section>
+    </div>
+
+    
+<!-- Existing sections -->
+
+<section class="faq">
+<section class="faq">
+      <h1 class="heading" style="margin-top: -2rem; color: #00bfff;" id="faq">FAQ</h1>
+      <div class="row">
+          <div class="accordion-container">
+              <div class="accordion">
+                  <div class="accordion-header">
+                      <span>-</span>
+                      <h3>What is Startup Validator and who is it for?
+</h3>
+                  </div>
+                  <div class="accordion-body" style="display: block;">
+                      <p>Startup Validator is an AI-powered tool that evaluates business ideas for entrepreneurs, students, and professionals, helping them understand their idea’s potential before investing time and money.</p>
+                  </div>
+              </div>
+              <div class="accordion">
+                  <div class="accordion-header">
+                      <span>+</span>
+                      <h3>Is my startup idea safe and confidential?</h3>
+                  </div>
+                  <div class="accordion-body">
+                      <p>Yes. All your ideas are securely processed and never shared with any third party. Your privacy and data security are our top priorities.</p>
+                  </div>
+              </div>
+              <div class="accordion">
+                  <div class="accordion-header">
+                      <span>+</span>
+                      <h3>How does Startup Validator analyze my idea?</h3>
+                  </div>
+                  <div class="accordion-body">
+                      <p>You simply enter your idea and choose your industry. Our AI checks market trends, competition, and growth potential to give you a viability score and actionable recommendations.
+
+</p>
+                  </div>
+              </div>
+              <div class="accordion">
+                  <div class="accordion-header">
+                      <span>+</span>
+                      <h3>Can Startup Validator guarantee success?</h3>
+                  </div>
+                  <div class="accordion-body">
+                      <p>No tool can guarantee success, but Startup Validator helps you avoid common mistakes and provides insights to improve your chances of building a successful startup.</p>
+                  </div>
+              </div>
+              <div class="accordion">
+                  <div class="accordion-header">
+                      <span>+</span>
+                      <h3>Do I need technical or business experience to use it?</h3>
+                  </div>
+                  <div class="accordion-body">
+                      <p>Not at all. Startup Validator is designed for everyone—just describe your idea in simple words and get instant feedback.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+</section>
+  <div class="footer">
+    <div class="footer-top">
+      <div class="row">
+        <div class="footer-links">
+          <h4>About Us</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About us</a></li>
+            <li><a href="#service">Our services</a></li>
+            <li><a href="#">Terms & condition</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="careers.html">Career</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <p>Jaipur, Rajasthan</p>
+          <p><strong>Phone:</strong> 9407442819</p>
+          <p><strong>Email:</strong> kritikamishraa12@gmail.com</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Subscription</h4>
+          <p>Join our community of innovators. Subscribe for the latest trends, tips, and updates.
+
+</p>
+          <form action="" method="post">
+            <input type="email" name="email" placeholder="Your Email"><br>
+            <input type="submit" value="Subscribe">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2025 Startup Validator. All rights reserved.</div>
+  </div>
+
+<!-- Font Awesome CDN -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+<!-- Add Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.validator-form');
+            const ideaInput = document.getElementById('idea');
+            const industrySelect = document.getElementById('industry');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const idea = ideaInput.value.trim();
+                const industry = industrySelect.value;
+                if (!idea) { alert('Please describe your startup idea'); return; }
+                if (!industry) { alert('Please select an industry'); return; }
+                alert(`Your idea "${idea.substring(0, 30)}..." has been submitted for validation! Results coming soon.`);
+            });
+
+            const logo = document.querySelector('.logo');
+            setTimeout(() => {
+                logo.style.transition = 'all 0.5s ease';
+                logo.style.transform = 'scale(1.1)';
+                setTimeout(() => { logo.style.transform = 'scale(1)'; }, 500);
+            }, 1000);
+        });
+    </script>
+    <script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+const overlay = document.getElementById('overlay');
+
+function toggleMenu() {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+    overlay.classList.toggle('show');
+}
+
+hamburger.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', toggleMenu);
+</script>
+<script>
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const accordion = header.parentElement;
+      accordion.classList.toggle('active');
+
+      const body = accordion.querySelector('.accordion-body');
+      const icon = header.querySelector('span');
+
+      if (accordion.classList.contains('active')) {
+        body.style.display = 'block';
+        icon.textContent = '-';
+      } else {
+        body.style.display = 'none';
+        icon.textContent = '+';
+      }
+    });
+  });
+</script>
+
+
+
+
+</body>
+</html>
